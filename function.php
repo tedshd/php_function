@@ -108,6 +108,7 @@ class QueryString {
         if (!empty($query_string)) {
             $query_string = '?' . $query_string;
         }
+        $new_query = http_build_query(array_filter($new_query));
         if (!empty($new_query)) {
             if (empty($query_string)) {
                 $new_query = '?' . $new_query;
