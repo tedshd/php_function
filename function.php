@@ -125,5 +125,32 @@ class QueryString {
 // var_dump($QueryString->query());
 // echo $QueryString -> urlGenerate();
 
+function url_update_query($url='', $query_string=[])
+{
+  $url_data = parse_url($url);
+  $query_array = [];
+  if (isset($url_data['query'])) {
+    $query_data = $url_data['query'];
+    parse_str($query_data, $query_array);
+  }
+  if (!empty($query_string)) {
+    foreach ($query_string as $key => $value) {
+      $query_array[$key] = $value;
+    }
+    $url_data['query'] = http_build_query($query_array, null, '&', PHP_QUERY_RFC3986);
+  }
+
+  $scheme   = isset($url_data['scheme']) ? $url_data['scheme'] . '://' : '';
+  $host     = isset($url_data['host']) ? $url_data['host'] : '';
+  $port     = isset($url_data['port']) ? ':' . $url_data['port'] : '';
+  $user     = isset($url_data['user']) ? $url_data['user'] : '';
+  $pass     = isset($url_data['pass']) ? ':' . $url_data['pass']  : '';
+  $pass     = ($user || $pass) ? "$pass@" : '';
+  $path     = isset($url_data['path']) ? $url_data['path'] : '';
+  $query    = isset($url_data['query']) ? '?' . $url_data['query'] : '';
+  $fragment = isset($url_data['fragment']) ? '#' . $url_data['fragment'] : '';
+
+  return $scheme . $user . $pass . $host . $port . $path . $query . $fragment;
+}
 
 ?>
