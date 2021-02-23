@@ -153,4 +153,25 @@ function url_update_query($url='', $query_string=[])
   return $scheme . $user . $pass . $host . $port . $path . $query . $fragment;
 }
 
+/**
+ * $ver_min = '8.2';
+ * $ver_max = '8.3.0';
+ */
+function matchMaxVersion($ver_min, $ver_max)
+{
+  $ver_min_arr = explode('.', $ver_min);
+  $ver_max_arr = explode('.', $ver_max);
+
+  for ($i = 0; $i < sizeof($ver_min_arr); $i++) {
+    if (isset($ver_min_arr[$i]) && isset($ver_max_arr[$i])) {
+      if (intval($ver_max_arr[$i]) > intval($ver_min_arr[$i])) {
+        return true;
+      }
+      if (intval($ver_max_arr[$i]) < intval($ver_min_arr[$i])) {
+        return false;
+      }
+    }
+  }
+}
+
 ?>
