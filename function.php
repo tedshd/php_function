@@ -174,4 +174,90 @@ function matchMaxVersion($ver_min, $ver_max)
   }
 }
 
+function androidOsVersionValid($ver)
+{
+  $array = explode('.', $ver);
+  if (sizeof($array) != 2) {
+    return false;
+  }
+  for ($i = 0; $i < 2; $i++) {
+    if (!is_numeric($array[$i])) {
+      return false;
+    }
+  }
+  if ($array[0] <= 0 || $array[0] > 100) {
+    return false;
+  }
+  if ($array[1] < 0 || $array[1] > 10) {
+    return false;
+  }
+  return true;
+}
+
+function iosOsVersionValid($ver)
+{
+  $array = explode('.', $ver);
+  if (sizeof($array) != 3) {
+    return false;
+  }
+  for ($i = 0; $i < 3; $i++) {
+    if (!is_numeric($array[$i])) {
+      return false;
+    }
+  }
+  if ($array[0] <= 0 || $array[0] > 100) {
+    return false;
+  }
+  if ($array[1] < 0 || $array[1] > 10) {
+    return false;
+  }
+  if ($array[1] < 0 || $array[1] > 10) {
+    return false;
+  }
+  return true;
+}
+
+function androidVersionValid($ver)
+{
+  $array = explode('.', $ver);
+  if (sizeof($array) != 2) {
+    return false;
+  }
+  for ($i = 0; $i < 2; $i++) {
+    if (!is_numeric($array[$i])) {
+      return false;
+    }
+  }
+  if ($array[0] <= 0 || $array[0] > 100) {
+    return false;
+  }
+  if ($array[1] < 0 || $array[1] > 100) {
+    return false;
+  }
+  return true;
+}
+
+function iosVersionValid($ver)
+{
+  $array = explode('.', $ver);
+  if (sizeof($array) != 3) {
+    return false;
+  }
+  for ($i = 0; $i < 3; $i++) {
+    if (!is_numeric($array[$i])) {
+      return false;
+    }
+  }
+  if ($array[0] <= 0 || $array[0] > 100) {
+    return false;
+  }
+  if ($array[1] < 0 || $array[1] > 10) {
+    return false;
+  }
+  if ($array[1] < 0 || $array[1] > 100) {
+    return false;
+  }
+  return true;
+}
+
 ?>
